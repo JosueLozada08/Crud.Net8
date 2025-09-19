@@ -1,21 +1,27 @@
 using System.Diagnostics;
 using Crud.Net8.Models;
 using Microsoft.AspNetCore.Mvc;
+using Crud.Net8.Datos;
+using Microsoft.EntityFrameworkCore;
 
 namespace Crud.Net8.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+    public class InicioController : Controller
 
-        public HomeController(ILogger<HomeController> logger)
+    {
+        private readonly AplicationDbContext _contexto;
+
+
+        //private readonly ILogger<InicioController> _logger;
+
+        public InicioController(AplicationDbContext contexto)
         {
-            _logger = logger;
+            _contexto = contexto;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _contexto.Contacto.ToArrayAsync());
         }
 
         public IActionResult Privacy()
