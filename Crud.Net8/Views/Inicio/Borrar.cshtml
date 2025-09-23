@@ -1,0 +1,47 @@
+﻿@model Crud.Net8.Models.Contacto
+@{
+    ViewData["Title"] = "Borrar Contacto";
+}
+
+<div class="container py-4">
+    <h1 class="text-center mb-4 text-danger">¿Borrar este contacto?</h1>
+
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">Confirmación</h3>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Estás a punto de eliminar el siguiente registro:</p>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Id</dt>
+                        <dd class="col-sm-9">@Model.Id</dd>
+
+                        <dt class="col-sm-3">Nombre</dt>
+                        <dd class="col-sm-9">@Model.Nombre</dd>
+
+                        <dt class="col-sm-3">Celular</dt>
+                        <dd class="col-sm-9">@Model.Celular</dd>
+
+                        <dt class="col-sm-3">Email</dt>
+                        <dd class="col-sm-9">@Model.Email</dd>
+
+                        <dt class="col-sm-3">Fecha creación</dt>
+                        <dd class="col-sm-9">@Model.FechaCreacion.ToString("yyyy-MM-dd HH:mm")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer d-flex gap-2">
+                    <form asp-action="Borrar" asp-route-id="@Model.Id" method="post" class="m-0">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-eraser"></i> Borrar
+                        </button>
+                    </form>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
